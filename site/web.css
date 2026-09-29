@@ -1,0 +1,15 @@
+/* Public pages: join link landing and downloads */
+.landing { max-width: 560px; margin: 0 auto; padding: 40px 16px 56px; display: grid; gap: 14px; }
+.landing .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+.hero { padding: 26px; display: grid; gap: 10px; }
+.hero h1 { font-size: 24px; }
+.step { padding: 22px; display: grid; grid-template-columns: 32px 1fr; gap: 14px; }
+.step-n { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand-ink); font-weight: 700; }
+.step-body { display: grid; gap: 10px; min-width: 0; }
+.actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.link { color: var(--text-2); font-weight: 550; }
+.code-box { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--brand-soft); }
+.code { font: 700 28px/1.1 var(--mono); letter-spacing: .12em; color: var(--brand-ink); }
+.help summary { cursor: pointer; color: var(--text-2); font-size: 13px; }
+.help p { margin-top: 6px; color: var(--text-2); font-size: 13px; }
+.footnote { color: var(--text-3); font-size: 12px; text-align: center; padding: 0 12px; }

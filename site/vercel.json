@@ -1,0 +1,37 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/download/windows",
+      "destination": "https://github.com/Magppie1234/apploye-downloads/releases/latest/download/Apploye-Setup.exe",
+      "permanent": false
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https://cjznrjiujvlkupagnasr.supabase.co; connect-src 'self' https://cjznrjiujvlkupagnasr.supabase.co wss://cjznrjiujvlkupagnasr.supabase.co; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Join your team on Apploye</title>
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/web.css">
+</head>
+<body>
+  <main class="landing">
+    <div class="brand"><div class="brand-mark">A</div><span>Apploye</span></div>
+    <section class="card hero">
+      <h1 id="title">Join your team on Apploye</h1>
+      <p id="lead" class="muted">Follow the two steps below to get started.</p>
+      <div id="teams" class="chips" hidden></div>
+      <p id="problem" class="callout warn" hidden></p>
+    </section>
+
+    <section class="card step">
+      <span class="step-n">1</span>
+      <div class="step-body">
+        <h2>Download and install Apploye</h2>
+        <p class="muted">It installs in a few seconds and opens by itself.</p>
+        <div class="actions">
+          <a id="download-primary" class="btn primary lg" href="/download/windows">Download for Windows</a>
+          <a id="download-secondary" class="link" href="/download/mac">Using a Mac?</a>
+        </div>
+        <p id="mac-note" class="callout" hidden>The Mac version is coming soon. Please use a Windows computer for now, or ask your admin.</p>
+        <details class="help">
+          <summary>Windows says “Windows protected your PC”?</summary>
+          <p>Click <b>More info</b>, then <b>Run anyway</b>. This appears for new apps that Windows hasn’t seen often yet.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="code-step" class="card step" hidden>
+      <span class="step-n">2</span>
+      <div class="step-body">
+        <h2>Enter your join code in the app</h2>
+        <div class="code-box"><strong id="code" class="code"></strong><button id="copy" class="btn sm" type="button">Copy</button></div>
+        <p id="code-note" class="subtle"></p>
+        <p class="subtle">Already installed? <a id="open-app" href="#">Open Apploye with this code</a></p>
+      </div>
+    </section>
+
+    <p class="footnote">Apploye records work time, apps, websites and periodic screenshots only while you’re clocked in. You can see everything recorded about you in the app.</p>
+  </main>
+  <script src="/join.js"></script>
+</body>
+</html>
