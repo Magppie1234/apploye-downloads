@@ -1,4 +1,11 @@
 /* Apploye design tokens and shared components (desktop app + admin console). */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   color-scheme: light;
   --bg: #f6f6f9;
@@ -7,8 +14,8 @@
   --line: #e7e6ee;
   --line-strong: #d6d4e0;
   --text: #17161f;
-  --text-2: #56546a;
-  --text-3: #8b89a0;
+  --text-2: #4a4860;
+  --text-3: #75738a;
   --brand: #6d4df2;
   --brand-hover: #5b3be0;
   --brand-soft: #efebff;
@@ -25,7 +32,7 @@
   --radius-sm: 8px;
   --shadow: 0 1px 2px rgba(23, 22, 31, .04), 0 4px 16px rgba(23, 22, 31, .05);
   --shadow-lg: 0 12px 48px rgba(23, 22, 31, .18);
-  --font: "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: "JetBrains Mono", "Cascadia Mono", "SF Mono", Consolas, monospace;
 
   --team-violet: #7c5cf5; --team-blue: #2f6fe4; --team-teal: #0f9a9a; --team-green: #12a150;
@@ -38,6 +45,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font: 14px/1.45 var(--font);
+  font-feature-settings: "cv11", "ss01";
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, p { margin: 0; }
@@ -162,3 +170,53 @@ dialog::backdrop { background: rgba(20, 18, 32, .42); }
 .plain-page .card { max-width: 520px; padding: 28px; display: grid; gap: 14px; }
 .steps { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--text-2); }
 .key { display: block; padding: 10px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--line); font-family: var(--mono); font-size: 12px; overflow-wrap: anywhere; }
+
+/* Day scorecard: score, verdict and the productive / off-task / not-working split */
+.scorecard { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; padding: 16px; align-items: center; }
+.score-ring { --value: 0; --tone: var(--green); width: 84px; height: 84px; border-radius: 50%; background: conic-gradient(var(--tone) calc(var(--value) * 1%), #efeef4 0); display: grid; place-items: center; flex: none; }
+.score-ring > div { width: 66px; height: 66px; border-radius: 50%; background: var(--surface); display: grid; place-content: center; text-align: center; line-height: 1.1; }
+.score-ring strong { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.score-ring span { font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; }
+.score-ring.sm { width: 40px; height: 40px; }
+.score-ring.sm > div { width: 30px; height: 30px; }
+.score-ring.sm strong { font-size: 12px; }
+.score-body { display: grid; gap: 10px; min-width: 0; }
+.score-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.verdict { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 650; white-space: nowrap; background: #f0f0f4; color: var(--text-3); }
+.verdict.good { background: var(--green-soft); color: var(--green); }
+.verdict.ok { background: var(--blue-soft); color: var(--blue); }
+.verdict.short { background: var(--amber-soft); color: var(--amber); }
+.verdict.look { background: var(--red-soft); color: var(--red); }
+.split { display: flex; height: 10px; border-radius: 99px; overflow: hidden; background: #efeef4; }
+.split i { display: block; height: 100%; }
+.split .p, .trio .p, .cal-legend .good { background: var(--green); }
+.split .o, .trio .o { background: var(--amber); }
+.split .n, .trio .n { background: #b9b7c6; }
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.trio span { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-3); font-weight: 550; white-space: nowrap; }
+.trio i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.trio strong { display: block; font-size: 17px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+
+/* Month calendar */
+.cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.cal .dow { text-align: center; font-size: 11px; font-weight: 600; color: var(--text-3); padding-bottom: 2px; }
+.cal-day { aspect-ratio: 1; min-height: 40px; display: grid; place-content: center; text-align: center; gap: 1px; padding: 2px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; line-height: 1.1; }
+.cal-day b { font-size: 13px; font-weight: 600; }
+.cal-day small { font-size: 11px; min-height: 12px; font-variant-numeric: tabular-nums; color: var(--text-2); }
+.cal-day:hover:not(:disabled) { border-color: var(--line-strong); }
+.cal-day:disabled { opacity: .4; cursor: default; }
+.cal-day.good { background: var(--green-soft); border-color: #cdeeda; }
+.cal-day.ok { background: var(--blue-soft); border-color: #d3e1fa; }
+.cal-day.short { background: var(--amber-soft); border-color: #f1dfb2; }
+.cal-day.look { background: var(--red-soft); border-color: #f4caca; }
+.cal-day.today b { text-decoration: underline; text-underline-offset: 3px; }
+.cal-day.sel { outline: 2px solid var(--brand); outline-offset: 1px; }
+.cal-legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 12px; color: var(--text-2); align-items: center; }
+.cal-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.cal-legend i { width: 10px; height: 10px; border-radius: 3px; }
+.cal-legend .ok { background: var(--blue); }
+.cal-legend .short { background: var(--amber); }
+.cal-legend .look { background: var(--red); }
+.facts-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 8px; }
+.facts-grid span { display: block; font-size: 12px; color: var(--text-3); font-weight: 550; }
+.facts-grid strong { display: block; font-size: 15px; margin-top: 2px; font-variant-numeric: tabular-nums; }
